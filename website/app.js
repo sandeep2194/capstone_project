@@ -3,8 +3,8 @@ const baseurl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apikey = '&appid=c1373afd576221e460f658492a0f69fa';
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', perform_magic)
-    /* Function called by event listener */
+document.getElementById('generate').addEventListener('click', perform_magic);
+/* Function called by event listener */
 function perform_magic() {
     let zipcode = document.getElementById('zip').value;
     getweather(baseurl, zipcode, apikey)
@@ -14,7 +14,7 @@ function perform_magic() {
         .then(
             updateUI()
         )
-}
+};
 /* Function to GET Web API Data*/
 const getweather = async(baseurl, zipcode, apikey) => {
     const res = await fetch(baseurl + zipcode + apikey)
@@ -25,7 +25,7 @@ const getweather = async(baseurl, zipcode, apikey) => {
     } catch (e) {
         console.log("error", e);
     }
-}
+};
 
 
 /* Function to POST data */
@@ -47,24 +47,24 @@ const postData = async(url = " ", data = {}) => {
         console.log("error", e);
         // appropriately handle the error
     }
-}
+};
 
 /* Function to GET Project Data */
 
 const updateUI = async() => {
-    const response = await fetch('/all');
+    const request = await fetch('/all');
     let d = new Date();
     let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
     const date = document.getElementById('date');
     const temp = document.getElementById('temp');
     const content = document.getElementById('content');
     try {
-        const allData = await response.json();
+        const allData = await request.json();
+        const length = (allData.length - 1).toString();
         date.innerHTML = `<hr> Today's Date = ${newDate}`;
-        temp.innerHTML = `<br>Temprature today is ${allData["0"].temp} Ferenhite but it feels like ${allData["0"].feels_like} Ferenhite.`;
+        temp.innerHTML = `<br>Temprature today is ${allData[length].temp} Ferenhite but it feels like ${allData[length].feels_like} Ferenhite.`;
         content.innerHTML = `<br>User's Feelings : ${document.getElementById('feelings').value}`;
-
     } catch (e) {
         console.log('erroe', e);
     }
-}
+};

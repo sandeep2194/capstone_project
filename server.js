@@ -35,7 +35,7 @@ app.post('/add', cb_post);
 
 function cb_post(req, res) {
     const newData = req.body;
-    const newEntry = {
+    let newEntry = {
         coord: newData.coord,
         temp: newData.main.temp,
         feels_like: newData.main.feels_like,
@@ -45,4 +45,4 @@ function cb_post(req, res) {
         humidity: newData.main.humidity,
     }
     projectData.push(newEntry);
-}
+};
