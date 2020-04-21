@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = [];
+let projectData = {};
 // Express to run server and routes
 const express = require('express');
 // Start up an instance of app
@@ -44,5 +44,5 @@ function cb_post(req, res) {
         pressure: newData.main.pressure,
         humidity: newData.main.humidity,
     }
-    projectData.push(newEntry);
+    projectData['entry'] = newEntry;
 };

@@ -52,17 +52,17 @@ const postData = async(url = " ", data = {}) => {
 /* Function to GET Project Data */
 
 const updateUI = async() => {
-    const request = await fetch('/all');
     let d = new Date();
     let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
     const date = document.getElementById('date');
     const temp = document.getElementById('temp');
     const content = document.getElementById('content');
+    const request = await fetch('/all');
+
     try {
         const allData = await request.json();
-        const length = (allData.length - 1).toString();
         date.innerHTML = `<hr> Today's Date = ${newDate}`;
-        temp.innerHTML = `<br>Temprature today is ${allData[length].temp} Ferenhite but it feels like ${allData[length].feels_like} Ferenhite.`;
+        temp.innerHTML = `<br>Temprature today is ${allData.entry.temp} Ferenhite but it feels like ${allData.entry.feels_like} Ferenhite.`;
         content.innerHTML = `<br>User's Feelings : ${document.getElementById('feelings').value}`;
     } catch (e) {
         console.log('erroe', e);
