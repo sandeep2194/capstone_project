@@ -11,9 +11,9 @@ function perform_magic() {
         .then(function(data) {
             postData("/add", data);
         })
-        .then(
+        .then(function() {
             updateUI()
-        )
+        })
 };
 /* Function to GET Web API Data*/
 const getweather = async(baseurl, zipcode, apikey) => {
