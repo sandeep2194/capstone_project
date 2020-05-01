@@ -14,7 +14,7 @@ app.use(bodyparser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('../../dist'));
 // Spin up the server
 const port = 3000
 const server = app.listen(port, callback());
@@ -44,5 +44,5 @@ function cb_post(req, res) {
         pressure: newData.main.pressure,
         humidity: newData.main.humidity,
     }
-    projectData['entry'] = newEntry;
+    projectData = newEntry;
 };

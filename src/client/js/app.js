@@ -68,3 +68,5 @@ const updateUI = async() => {
         console.log('erroe', e);
     }
 };
+
+export { perform_magic };
