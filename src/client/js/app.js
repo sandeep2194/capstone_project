@@ -1,13 +1,12 @@
 // Personal API Key for OpenWeatherMap API
-const baseurl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apikey = '&appid=c1373afd576221e460f658492a0f69fa';
+const baseurl = `http://api.geonames.org/search?q=${query}&maxRows=10&username=sandeep2194`;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', perform_magic);
 /* Function called by event listener */
 function perform_magic() {
-    let zipcode = document.getElementById('zip').value;
-    getweather(baseurl, zipcode, apikey)
+    let query = document.getElementById('zip').value;
+    getweather(baseurl, query)
         .then(function(data) {
             postData("/add", data);
         })

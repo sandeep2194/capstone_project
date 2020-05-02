@@ -36,13 +36,9 @@ app.post('/add', cb_post);
 function cb_post(req, res) {
     const newData = req.body;
     let newEntry = {
-        coord: newData.coord,
-        temp: newData.main.temp,
-        feels_like: newData.main.feels_like,
-        temp_min: newData.main.temp_min,
-        temp_max: newData.main.temp_max,
-        pressure: newData.main.pressure,
-        humidity: newData.main.humidity,
+        long: newEntry.geonames['0'].lng,
+        lat: newEntry.geonames['0'].lat,
+        country: newEntry.geonames['0'].countryName
     }
     projectData = newEntry;
 };
