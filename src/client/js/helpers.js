@@ -42,9 +42,15 @@ const date_diff_indays = function(date1, date2) {
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
 }
 
+function addDays(date, days) {
+    const copy = new Date(Number(date))
+    copy.setDate(date.getDate() + days)
+    return copy
+}
 export {
     backend_callback_url_switch,
     postData,
     getdata,
-    date_diff_indays
+    date_diff_indays,
+    addDays,
 }

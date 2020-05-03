@@ -1,5 +1,4 @@
-import { magic } from "./magic"
-import { updateUI } from "./magic"
+import { magic } from "./app"
 
 function do_the_magic(event) {
     document.getElementById('generate').addEventListener('click', magic)
