@@ -1,8 +1,3 @@
 import './styles/style.scss';
-import { perform_magic } from "./js/app";
-
-
-
-export {
-    perform_magic
-}
+import { do_the_magic } from "./js/form_handler";
+do_the_magic()
