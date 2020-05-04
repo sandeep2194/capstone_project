@@ -5,6 +5,7 @@ import { date_diff_indays } from "./helpers";
 let all_data = {}
 let c_data = {}
 
+
 function magic() {
     const city = document.getElementById('city').value
     geoname(city).then(() => {
@@ -28,9 +29,10 @@ const consolidate = async(data1, data2, city) => {
     data1[city] = data2;
 }
 const updateUI = async() => {
-    const travelday = document.getElementById('travelday');
     const request = await fetch(backend_callback_url_switch('/all'));
-
+    const start_date = document.getElementById('travelday');
+    const end_date = document.getElementById('endday');
+    const legth_of_trip = date_diff_indays(start_date.value, end_date.value);
     try {
         const data = await request.json();
         const trips_section = document.getElementById('trips')
@@ -40,7 +42,9 @@ const updateUI = async() => {
                         <div id="city_img">
                         <img src="${data[acity].pixabay_image}" alt="${acity}">
                         </div>
+                        <div id='meta'>
                         <div id='basic_info'>
+                        <strong>Length of trip : ${legth_of_trip} days</strong>
                             <div id='city'><span>City: </span>${acity}</div>
                             <div id='Country'><span>Country: </span>${data[acity].geoname.countryName}</div>
                             <div id='long'><span>Longitude: </span>${data[acity].geoname.lng}</div>
@@ -50,8 +54,9 @@ const updateUI = async() => {
                         <h2>Weather</h2>
                             <div id='day1'>
                                 <div id='description'><span>Description: </span>${data[acity].weather_bit_data.weather.description}</div>
-                                <div id='temp'><span>Temprature: </span>${data[acity].weather_bit_data.temp}</div>
+                                <div id='temp'><span>Temprature: </span>${data[acity].weather_bit_data.temp} 'C</div>
                             </div>
+                        </div>
                         </div>
                     </div>`
             trips_section.insertAdjacentHTML('beforeend', trip);

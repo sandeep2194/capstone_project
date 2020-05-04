@@ -7,23 +7,27 @@
 </head>
 
 <body>
-    <div id="app">
-        <div class="holder headline">
-            Travel App
-        </div>
-        <div class="holder city">
-            <label for="city">Enter City</label>
-            <input type="text" id="city" placeholder="enter city name">
-        </div>
-        <div class="holder Date">
-            <label for="travelday">Travel Date</label>
-            <input type="date" id="travelday" name="TravelDay">
-        </div>
-        <button id="generate" type="submit"> Generate </button>
+    <header>
+        Travel App
+    </header>
+    <main>
         <h3 id='error'></h3>
+        <div id='form'>
+            <label>City</label>
+            <input type="text" id="city" placeholder="Enter city name">
+            <label>Start Date</label>
+            <input type="date" id="travelday" name="TravelDay">
+            <label>End Date</label>
+            <input type="date" id="endday" name="endday">
+            <button id="generate" type="submit"> Generate </button>
+        </div>
         <section id='trips'>
+
         </section>
-    </div>
+    </main>
+    <footer>
+        Footer
+    </footer>
 </body>
 
 </html>
