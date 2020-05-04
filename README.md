@@ -26,5 +26,9 @@ git clone https://github.com/Yoga10n/project3.git
         "webpack-merge": "^4.2.2"
 ```
 
+## Extended feature
+
+Used end date and calculated the length of the trip.
+
 
 

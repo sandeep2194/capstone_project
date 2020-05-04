@@ -1,3 +1,3 @@
 import './styles/style.scss';
-import { do_the_magic } from "./js/form_handler";
-do_the_magic()
+import { initialiseApp } from "./js/form_handler";
+initialiseApp()

@@ -30,7 +30,6 @@ const getdata = async(baseurl) => {
 
     try {
         const data = await res.json();
-        console.log(data);
         return data;
     } catch (e) {
         console.log("error", e);

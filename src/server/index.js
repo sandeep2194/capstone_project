@@ -11,7 +11,7 @@ app.use(bodyparser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('../../dist'));
+app.use(express.static('dist'));
 
 // Spin up the server
 const port = 8081
@@ -20,7 +20,9 @@ const server = app.listen(port, callback());
 function callback() {
     console.log(`Server is running on ${port}`);
 }
-
+app.get('/', (req, res) => {
+    res.sendFile('dist/index.html')
+})
 let data = {}
 app.get('/all', callbackget);
 // Callback function to complete GET '/all'

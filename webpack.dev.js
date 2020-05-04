@@ -6,6 +6,7 @@ module.exports = merge(common, {
     devtool: 'source-map',
     stats: 'verbose',
     module: {
+
         rules: [{
             test: /\.scss/,
             use: ['style-loader', 'css-loader', 'sass-loader']

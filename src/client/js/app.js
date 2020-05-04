@@ -1,5 +1,6 @@
 import { backend_callback_url_switch } from "./helpers";
 import { postData } from "./helpers";
+import { getdata } from "./helpers";
 import { date_diff_indays } from "./helpers";
 //declaring data objects
 let all_data = {}
@@ -69,16 +70,7 @@ const updateUI = async() => {
         document.getElementById('error').innerHTML = 'Sorry some error occured'
     }
 };
-//fuction to fectch apis
-const getdata = async(baseurl) => {
-    const res = await fetch(baseurl)
-    try {
-        const data = await res.json();
-        return data;
-    } catch (e) {
-        console.log("error", e);
-    }
-};
+
 //geoname fuction to fecth long & lat
 const geoname = async(query) => {
     const baseurl = `http://api.geonames.org/searchJSON?q=${query}&maxRows=1&username=sandeep2194`;
@@ -118,4 +110,7 @@ const pixabay = async(city) => {
 };
 
 
-export { magic };
+export {
+    magic,
+    consolidate
+};
