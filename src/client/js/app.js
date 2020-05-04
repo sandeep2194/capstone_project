@@ -1,11 +1,11 @@
 import { backend_callback_url_switch } from "./helpers";
 import { postData } from "./helpers";
 import { date_diff_indays } from "./helpers";
-
+//declaring data objects
 let all_data = {}
 let c_data = {}
 
-
+//running one fuction after the other
 function magic() {
     const city = document.getElementById('city').value
     geoname(city).then(() => {
@@ -24,10 +24,12 @@ function magic() {
 
     })
 };
-
+//add data to one object
 const consolidate = async(data1, data2, city) => {
     data1[city] = data2;
 }
+
+//update UI 
 const updateUI = async() => {
     const request = await fetch(backend_callback_url_switch('/all'));
     const start_date = document.getElementById('travelday');
@@ -36,6 +38,7 @@ const updateUI = async() => {
     try {
         const data = await request.json();
         const trips_section = document.getElementById('trips')
+            //for each key of fecthed data we create a row
         for (let acity of Object.keys(data)) {
 
             let trip = `<div class='trip_card' id='card'>
@@ -61,10 +64,12 @@ const updateUI = async() => {
                     </div>`
             trips_section.insertAdjacentHTML('beforeend', trip);
         }
+        document.getElementById('error').innerHTML = '';
     } catch (e) {
         document.getElementById('error').innerHTML = 'Sorry some error occured'
     }
 };
+//fuction to fectch apis
 const getdata = async(baseurl) => {
     const res = await fetch(baseurl)
     try {
@@ -74,7 +79,7 @@ const getdata = async(baseurl) => {
         console.log("error", e);
     }
 };
-
+//geoname fuction to fecth long & lat
 const geoname = async(query) => {
     const baseurl = `http://api.geonames.org/searchJSON?q=${query}&maxRows=1&username=sandeep2194`;
     try {
@@ -82,16 +87,10 @@ const geoname = async(query) => {
             c_data['geoname'] = data.geonames[0]
         })
     } catch (e) {
-        all_data[query] = {
-            type: 'geoname',
-            error: "yes",
-            error_name: e.name,
-            error_message: e.message
-        }
-
+        console.log('error', e)
     }
 };
-
+//to fecth weather data
 const weatherbit = async(city) => {
     const weather_bit_api_key = "c71b0c35541642f496f87d3b9841d49f"
     const baseurl = `http://api.weatherbit.io/v2.0/forecast/daily/?days=1&city=${city}&key=${weather_bit_api_key}`;
@@ -101,16 +100,10 @@ const weatherbit = async(city) => {
 
         })
     } catch (e) {
-        all_data[city] = {
-            type: 'weather_bit_data',
-            error: "yes",
-            error_name: e.name,
-            error_message: e.message
-        }
-
+        console.log('error', e)
     }
 };
-
+//to get images from image api
 const pixabay = async(city) => {
     const pixabay_api_key = "10508829-a311f765d5edbcbe236b9574b"
     const baseurl = `https://pixabay.com/api/?key=${pixabay_api_key}&q=${city}`;
@@ -119,12 +112,7 @@ const pixabay = async(city) => {
             c_data['pixabay_image'] = data.hits[0].webformatURL
         })
     } catch (e) {
-        all_data[city] = {
-            type: 'pixabay_image',
-            error: "yes",
-            error_name: e.name,
-            error_message: e.message
-        }
+        console.log('error', e)
 
     }
 };
